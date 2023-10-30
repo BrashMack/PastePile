@@ -1,0 +1,21 @@
+<ul class="pagination uniform-control">
+  <li class="page-item <%= 'disabled' if current_page.zero? %>">
+    <%= link_to t('forms.previous'), { page: current_page - 1 }, class: 'page-link' %>
+  </li>
+  <% ([0, current_page - 3].max...current_page).each do |page| %>
+    <li class="page-item">
+      <%= link_to (page + 1).to_s, { page: page }, class: 'page-link' %>
+    </li>
+  <% end %>
+  <li class="page-item active">
+    <p class="page-link"><%= (current_page + 1).to_s %></p>
+  </li>
+  <% ((current_page + 1)..[pages - 1, current_page + 4].min).each do |page| %>
+    <li class="page-item">
+      <%= link_to (page + 1).to_s, { page: page }, class: 'page-link' %>
+    </li>
+  <% end %>
+  <li class="page-item <%= 'disabled' if current_page == pages - 1 %>">
+    <%= link_to t('forms.next'), { page: current_page + 1 }, class: 'page-link' %>
+  </li>
+</ul>

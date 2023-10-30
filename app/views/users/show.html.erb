@@ -1,0 +1,34 @@
+<h1><%= t('forms.account') %></h1>
+
+<div class="uniform-control">
+  <% flash[:notice]&.tap do |notice| %>
+      <div class="alert alert-success"><%= notice %></div>
+  <% end %>
+
+  <p>
+    <strong><%= t('activerecord.attributes.user.username') %>:</strong>
+    <%= @user.username %>
+  </p>
+
+  <p>
+    <strong><%= t('activerecord.attributes.user.email') %>:</strong>
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <strong><%= t('activerecord.attributes.user.admin') %>:</strong>
+    <%= @user.admin ? 'Yes' : 'No' %>
+  </p>
+
+  <p>
+    <strong><%= t('activerecord.attributes.user.superuser') %>:</strong>
+    <%= @user.superuser ? 'Yes' : 'No' %>
+  </p>
+
+  <div class="btn-group col-12">
+  <% unless @user.admin && !@current_user.superuser && !(@user.id == @current_user.id) %>
+    <%= link_to t('forms.edit'), edit_user_path(@user), class: 'btn btn-primary'%>
+  <% end %>
+  <%= render 'back', current_user: @current_user %>
+  </div>
+</p>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PastePile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">PastePile</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/"><%= t 'forms.new_paste' %></a>
+          </li>
+          <% if @current_user %>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= user_path(@current_user) %>"><%= t 'forms.my_account' %></a>
+            </li>
+            <% if @current_user.admin %>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= users_path %>"><%= t 'forms.users' %></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/pastes"><%= t 'forms.pastes' %></a>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <a class="nav-link" href="/pastes"><%= t 'forms.my_pastes' %></a>
+              </li>
+            <% end %>
+          <% else %>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= signin_path %>"><%= t 'forms.sign_in' %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= signup_path %>"><% t 'forms.sign_up' %></a>
+            </li>
+          <% end %>
+        </ul>
+          <% if @current_user %>
+            <span class="navbar-text">
+              <small><%= t "forms.signed_in_as" %>
+              <% if @current_user.admin %>
+                  [<%= "#{t('activerecord.attributes.user.admin!')}, ".html_safe +
+                  "<span style=\"color: #dc3545\">#{t('activerecord.attributes.user.superuser!')}</span>"
+                    .html_safe if @current_user.superuser %>]
+              <% end %>
+              <strong>
+              <%= @current_user.username %>,
+              </strong></small>
+            </span><span class="nav-item">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <small><strong><%= link_to t('forms.sign_out'), {controller: :sessions, action: :destroy, id: session[:session_id]}, method: :delete, class: 'nav-link'%>
+                </strong></small>
+              </ul>
+            </span>
+          <% end %>
+        </>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

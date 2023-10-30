@@ -1,0 +1,16 @@
+<h1><%= t 'forms.sign_in' %></h1>
+
+<div style="width: 400px; padding: 50px">
+<% flash[:error]&.tap do |error| %>
+    <div class="alert alert-danger"><%= error %></div>
+<% end %>
+<%= form_for(:user, url: sessions_path , method: "post") do |f| %>
+    <%= f.label :username, t('activerecord.attributes.user.username') %>
+    <%= f.text_field(:username, class: "form-control col-12", required: true) %>
+    <%= f.label :password, t('activerecord.attributes.user.password') %>
+    <%= f.password_field(:password, class: "form-control col-12", required: true) %>
+    <%= f.submit(t('forms.sign_in'), class: "btn btn-primary col-12") %>
+<% end %>
+
+<%= button_to(t('forms.sign_up'), signup_url, method: :get, class: "btn btn-outline-primary col-12") %>
+</div>

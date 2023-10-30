@@ -1,0 +1,105 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t hello
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t(hello) %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   true: foo
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+ru:
+  'yes': Да
+  'no': Нет
+  forms:
+    pastes: Пасты
+    users: Пользователи
+    account: Аккаунт
+    copy: Скопировать код
+    anonymous: Аноним
+    search: Поиск
+    reset: Сброс
+    back: Назад
+    edit: Редактировать
+    show: Показать
+    submit: Подтвердить
+    delete: Удалить
+    sign_in: Вход
+    sign_up: Регистрация
+    sign_out: Выйти
+    nothing_found: Ничего не найдено
+    search_results_for: 'Результаты поиска:'
+    content_placeholder: Просто вставьте сюда текст или код!
+    errors:
+      one: В форме ошибка
+      few: В форме %{count} ошибки
+      many: В форме %{count} ошибок
+    messages:
+      are_you_sure?: Вы уверены?
+      delete_superuser?: >-
+        Вы собираетесь удалить аккаунт с правами суперпользователя.
+        Вы не сможете создать новый, если у вас нет доступа к другому аккаунту с правами суперпользователя.
+        Если в системе отсутствует другой аккаунт суперпользователя, создать новый можно будет только непосредственным запросом к базе данных.
+        Отсутствие аккаунта с правами суперпользователя в системе приведет к невозможности контролировать систему с привилегиями суперпользователя.
+        Вы уверены?
+      delete_admin?: >-
+        Вы собираетесь удалить собственный аккаунт с правами администратора.
+        Вы не сможете создать новый, если у вас нет доступа к аккаунту с правами суперпользователя.
+        Вы уверены?
+      invalid_credentials: Неверный логин или пароль
+      paste_was_successfully_created: Паста была успешно создана
+      paste_was_successfully_updated: Паста была успешно обновлена
+      paste_was_successfully_destroyed: Паста была успешно удалена
+      registration_successful: Регистрация прошла успешно
+      user_was_successfully_updated: Пользователь был успешно обновлен
+      user_was_successfully_destroyed: Пользователь был успешно удален
+    editing_paste: Редактирование пасты
+    new_paste: Новая паста
+    editing_user: Редактирование пользователя
+    new_user: Новый пользователь
+    my_pastes: Мои пасты
+    my_account: Мой аккаунт
+    signed_in_as: Вход под именем
+  activerecord:
+    attributes:
+      paste:
+        content: Содержимое
+        name: Название
+        language: Язык
+        owner: Владелец
+        private: Доступ
+        private?: Частная
+        private!: Частная
+        public!: Публичная
+        untitled: Без названия
+      user:
+        username: Имя пользователя
+        email: E-mail
+        password: Пароль
+        admin: Администратор
+        superuser: Суперпользователь
+        admin!: администратор
+        superuser!: суперпользователь
+        password_confirmation: Подтвердите пароль
+        

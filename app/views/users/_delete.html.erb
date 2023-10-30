@@ -1,0 +1,10 @@
+<% if current_user.superuser
+  confirm_message = t('forms.messages.delete_superuser?')
+elsif current_user.admin
+  confirm_message = t('forms.messages.delete_admin?')
+else
+  confirm_message = t('forms.messages.are_you_sure?')
+end %>
+
+<%= link_to t('forms.delete'), { action: :destroy, id: user.id}, method: :delete, data: { confirm: confirm_message },
+  class: small ? 'btn btn-outline-danger btn-sm' : 'btn btn-danger' %>

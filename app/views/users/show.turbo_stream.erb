@@ -1,0 +1,5 @@
+<% if @flag %>
+	<%= turbo_stream.update 'show_container', partial: 'edited' %>
+<% else %>
+	<%= turbo_stream.update 'show_container', partial: 'notEdited' %>
+<% end %>

@@ -1,0 +1,34 @@
+{
+  "application.js": "/packs-test/js/application-66a76a934529bc0d6953.js",
+  "application.js.map": "/packs-test/js/application-66a76a934529bc0d6953.js.map",
+  "checkbox_handler.js": "/packs-test/js/checkbox_handler-66ab1f1002252ec75133.js",
+  "checkbox_handler.js.map": "/packs-test/js/checkbox_handler-66ab1f1002252ec75133.js.map",
+  "copy_handler.js": "/packs-test/js/copy_handler-2c5f8d13c91274e78571.js",
+  "copy_handler.js.map": "/packs-test/js/copy_handler-2c5f8d13c91274e78571.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs-test/js/application-66a76a934529bc0d6953.js"
+      ],
+      "js.map": [
+        "/packs-test/js/application-66a76a934529bc0d6953.js.map"
+      ]
+    },
+    "checkbox_handler": {
+      "js": [
+        "/packs-test/js/checkbox_handler-66ab1f1002252ec75133.js"
+      ],
+      "js.map": [
+        "/packs-test/js/checkbox_handler-66ab1f1002252ec75133.js.map"
+      ]
+    },
+    "copy_handler": {
+      "js": [
+        "/packs-test/js/copy_handler-2c5f8d13c91274e78571.js"
+      ],
+      "js.map": [
+        "/packs-test/js/copy_handler-2c5f8d13c91274e78571.js.map"
+      ]
+    }
+  }
+}

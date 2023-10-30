@@ -1,0 +1,63 @@
+<% flash[:notice]&.tap do |notice| %>
+    <div class="alert alert-success"><%= notice %></div>
+<% end %>
+
+<div class="top-float">
+  <%= link_to t('forms.new_user'), new_user_path, class: 'btn btn-outline-success col-12' %>
+</div>
+
+<h1><%= t 'forms.users' %></h1>
+
+<%= form_with url: users_path, method: :get, class: "uniform-control" do |form| %>
+  <%= form.label :username, t('activerecord.attributes.user.username') %>
+  <%= form.text_field(:username, class: "form-control col-12", value: @params[:username]) %>
+  <div class="btn-group col-12">
+    <%= form.submit t('forms.search'), class: "btn btn-primary" %>
+    <%= link_to t('forms.reset'), users_path, class: "btn btn-secondary", style: "margin-bottom: 10px" %>
+  </div>
+<% end %>
+
+<h2 style="margin-left: 50px">
+  <% if @params[:username].presence %>
+    <%= t('forms.search_results_for') %>
+    <%= t('activerecord.attributes.user.username') + ": \'#{@params[:username]}\'" if @params[:username] %>
+  <% end %>
+</h2>
+
+<% if @users.none? %>
+  <%= render 'nothing_found' %>
+<% else %>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col"><%= t 'activerecord.attributes.user.username' %></th>
+        <th scope="col"><%= t 'activerecord.attributes.user.email' %></th>
+        <th scope="col"><%= t 'activerecord.attributes.user.admin' %></th>
+        <th scope="col"><%= t 'activerecord.attributes.user.superuser' %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= t(user.admin ? 'yes' : 'no') %></td>
+          <td><%= t(user.superuser ? 'yes' : 'no') %></td>
+          <td><%= link_to t('forms.show'), user, class: 'btn btn-outline-primary btn-sm' %></td>
+          <% if !user.admin || @current_user.superuser || user.id == @current_user.id %>
+            <td><%= link_to t('forms.edit'), edit_user_path(user), class: 'btn btn-outline-primary btn-sm' %></td>
+            <td><%= render 'delete', user: user, current_user: @current_user, small: true %></td>
+          <% else %>
+            <td colspan=2></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+
+  <%= render 'pagination', current_page: @params[:page].to_i, pages: @pages %>
+<% end %>

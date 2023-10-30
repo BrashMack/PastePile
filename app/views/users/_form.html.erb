@@ -1,0 +1,39 @@
+
+<%= javascript_pack_tag 'checkbox_handler', 'data-turbolinks-track': 'reload'%>
+
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <b><%= t 'forms.errors', count: user.errors.count %></b>
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><small>
+            <%= error.full_message %>
+          </small></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.label :username %>
+  <%= form.text_field(:username, class: "form-control col-12", required: true) %>
+  <%= form.label :email %>
+  <%= form.text_field(:email, class: "form-control col-12", required: true) %>
+  <%= form.label :password %>
+  <%= form.password_field(:password, class: "form-control col-12", required: password_required) %>
+  <% unless current_user&.admin %>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field(:password_confirmation, class: "form-control col-12", required: password_required) %>
+  <% end %>
+  <% if current_user&.superuser %>
+    <div class="form-check">
+      <%= form.check_box :admin, class: 'form-check-input'%>
+      <%= form.label :admin, class: 'form-check-label' %>
+    </div>
+    <div class="form-check">
+      <%= form.check_box :superuser, class: "form-check-input" %>
+      <%= form.label :superuser, class: "form-check-label" %>
+    </div>
+  <% end %>
+  <%# <%= form.submit t('forms.submit'), class: "btn btn-primary col-12" %> 
+  <%= form.submit t('forms.submit'), class: "btn btn-primary col-12" %>
+<% end %>

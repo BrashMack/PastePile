@@ -1,0 +1,36 @@
+<div class="side-padded">
+  <%= form_with(model: paste) do |form| %>
+    <% if paste.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <b><%= t 'forms.errors', count: paste.errors.count %></b>
+        <ul>
+          <% paste.errors.each do |error| %>
+            <li><small>
+              <%= error.full_message %>
+            </small></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div style="width: calc(100% - 450px); position: absolute; top: 152px; bottom: 50px; right: 20px">
+      <%= form.label :content %>
+      <%= form.text_area :content, class: 'form-control', style: 'resize: none; height: 100%',
+                                   placeholder: t('forms.content_placeholder'), autofocus: true, autocomplete: 'off'%>
+    </div>
+    <div class="inner-control">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'form-control', placeholder: t('activerecord.attributes.paste.untitled'), autocomplete: 'off' %>
+      <%= form.label :language %>
+      <%= form.select :language, LANGUAGES, { include_blank: false }, class: 'form-select' %>
+    </div>
+    <% if current_user %>
+      <div class="form-check">
+        <%= form.label :private, t('activerecord.attributes.paste.private?'), class: 'form-check-label' %>
+        <%= form.check_box :private, class: 'form-check-input' %>
+      </div>
+    <% end %>
+    
+    <%= form.submit value: t('forms.submit'),  class: 'btn btn-primary inner-control' %>
+  <% end %>
+</div>

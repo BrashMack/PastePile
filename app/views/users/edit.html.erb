@@ -1,0 +1,11 @@
+<h1><%= t 'forms.editing_user' %></h1>
+
+<div class="uniform-control">
+  <%= render 'form', user: @user, current_user: @current_user, password_required: false %>
+  <div class="btn-group col-12">
+    <%= link_to t('form.show'), @user, class: 'btn btn-primary' %>
+    <%= render 'back', current_user: @current_user %>
+    <%= render 'delete', user: @user, current_user: @current_user, small: false %>
+  </div>
+  <div id="show_container"></div>
+</div>

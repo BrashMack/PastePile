@@ -1,0 +1,95 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t hello
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t(hello) %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   true: foo
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  'yes': 'Yes'
+  'no': 'No'
+  forms:
+    pastes: Pastes
+    users: Users
+    account: Account
+    copy: Copy this paste
+    anonymous: Anonymous
+    search: Search
+    reset: Reset
+    back: Back
+    edit: Edit
+    show: Show
+    submit: Submit
+    delete: Delete
+    sign_in: Sign in
+    sign_up: Sign up
+    sign_out: Sign out
+    search_results_for: 'Search results for:'
+    content_placeholder: Paste your text/code here!
+    errors:
+      one: There is an error in form
+      other: There are %{count} errors in form
+    messages:
+      are_you_sure?: Are you sure?
+      delete_superuser?: >-
+        You are deleting a superuser account.
+        You will not be able to create a new one, unless you have access to another superuser acount.
+        If there is no other superuser account, you will only be able to create one by manually adding records to the database.
+        Deleting the only superuser account will lead to not being able to control the system with superuser privileges.
+        Are you sure?
+      delete_admin?: >-
+        You are deleting your own admin account.
+        You will not be able to create a new one, unless you have access to a superuser account.
+        Are you sure?
+      invalid_credentials: Invalid credentials
+      paste_was_successfully_created: Paste was successfully created
+      paste_was_successfully_updated: Paste was successfully updated
+      paste_was_successfully_destroyed: Paste was successfully deleted
+      registration_successful: Registration successful
+      user_was_successfully_updated: User was successfully updated
+      user_was_successfully_destroyed: User was successfully deleted
+    editing_paste: Editing paste
+    new_paste: New paste
+    editing_user: Edit user
+    new_user: Register
+    my_pastes: My pastes
+    my_account: My account
+    signed_in_as: Signed in as
+  activerecord:
+    attributes:
+      paste:
+        private: Access
+        private?: Is private
+        private!: Private
+        public!: Public
+        untitled: Untitled
+      user:
+        admin: Is admin
+        admin!: admin
+        superuser: Is superuser
+        superuser!: superuser
+        password_confirmation: Confirm password

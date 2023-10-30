@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/line-numbers/prism-line-numbers.css">
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+<h1><%= @paste.name.empty? ? t('activerecord.attributes.paste.untitled') : @paste.name %></h1>
+<div style="float: left;" class="uniform-control">
+  <% flash[:notice]&.tap do |notice| %>
+      <div class="alert alert-success"><%= notice %></div>
+  <% end %>
+
+  <p>
+    <strong><%= t('activerecord.attributes.paste.language') %>:</strong>
+    <%= LANGUAGES.find { |pair| pair.last == @paste.language }.first %>
+  </p>
+
+  <p>
+    <strong><%= t('activerecord.attributes.paste.private') %>:</strong>
+    <%= t "activerecord.attributes.paste.#{@paste.private ? 'private!' : 'public!'}" %>
+  </p>
+  <p>
+    <strong><%= t('activerecord.attributes.paste.owner') %>:</strong>
+    <%= @paste.anonymous? ? t('forms.anonymous') : @paste.user.username %>
+  </p>
+
+  <div class="btn-group col-12">
+  <% if @current_user&.==(@paste.user) || @current_user&.admin %>
+    <%= link_to t('forms.edit'), edit_paste_path(@paste), class: 'btn btn-primary' %>
+  <% end %>
+    <%= render 'back' %>
+  </div>
+</div>
+<div style="float: left; padding: 20px; width: calc(100% - 450px)">
+  <button class="btn btn-outline-success" id="btn-copy"><%= t 'forms.copy' %></button>
+  <pre><code class="line-numbers language-<%= @paste.language %>"><%= @paste.content %></code></pre>
+</div>
+
+<script>
+  text = `<%= @paste.content.html_safe %>`;
+</script>
+
+<%= javascript_pack_tag 'copy_handler', 'data-turbolinks-track': 'reload' %>
