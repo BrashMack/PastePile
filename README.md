@@ -1,5 +1,5 @@
 # PastePile
 
-My project(site) written using RoR 7
+Forum of interests on RoR 7
 
 You can see some [screenshots](/screenshots) here
